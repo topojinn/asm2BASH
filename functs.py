@@ -1,10 +1,12 @@
+bash = ""
+
 def clear():
   global asm
   asm = ""
   asm += "\n"
 
 def compile(asm_line):
-  global asm, asm_line, bash
+  global asm, bash
   
   for line in asm_line
     asm = asm_line.strip().upper()
@@ -154,3 +156,8 @@ def compile(asm_line):
     elif "POP BX" in asm:
       bash += "BX = ${stack[-1]}"; unset 'stack[-1]'"
       clear()
+
+    else:
+      return "Syntax Error: command not archived."
+
+    return bash
