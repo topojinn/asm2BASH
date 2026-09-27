@@ -7,5 +7,6 @@ MAIN_FILE="./asm2bash/main.py"
 
 "$INSTALL_PATH/bin/pip" install --upgrade pip
 "$INSTALL_PATH/bin/pip" install keyboard
+"$INSTALL_PATH/bin/pip" install customtkinter
 
 start $MAIN_FILE
