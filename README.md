@@ -1,2 +1,3 @@
-# BASPYcompiler
-A simplified version of python with basic functions and keyworlds compiler.
+# assembly to Bash
+A basic Assembly to Bash compiler/traspiler
+
