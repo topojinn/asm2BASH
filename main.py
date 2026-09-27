@@ -1,4 +1,7 @@
+from keyboard import add_hotkey as key
+from os import _exit as exitcode
 from functs import compile
+import sys as s
 
 print("Inert a line of ASSEMBLY code\n")
 asm_code = input("")
@@ -11,3 +14,11 @@ if not bash_line_code == "err":
 
 else:
   print(bash_line_code)
+
+def exit():
+  try:
+    s.exit(0)
+  finally:
+    exitcode(0)
+
+key('esc', exit)
