@@ -1,7 +1,7 @@
 from keyboard import add_hotkey as key
 from os import _exit as exitcode
 import customtkinter as ctk 
-from functs import compile
+from main import compile
 import sys as s
 
 root = ctk.CTk()
