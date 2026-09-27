@@ -158,6 +158,6 @@ def compile(asm_line):
       clear()
 
     else:
-      return "Syntax Error: command not archived."
+      return "err"
 
     return bash
