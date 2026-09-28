@@ -10,10 +10,14 @@ root.geometry("800x600")
 
 entry = ctk.CTkEntry(
     root, 
-    placeholder_text="enter ASM code", 
+    placeholder_text="enter ASM code path", 
     width=250,
     height=35
 )
+
+entry.pack()
+
+asm_file_or_path = entry.get()
 
 def exit():
   try:
@@ -24,22 +28,23 @@ def exit():
 key('esc', exit)
 
 def enter():
-  global asm_code, bash_line_code
-  
-  asm_code = entry.get()
-  
-  for line in asm_code:
-    bash_line_code += compile()
-  
-  if not bash_line_code == "err":
-    error_label = ctk.CTkLabel(root, text="Syntax error: ")
-    error_label.pack(pady=(20, 5))
-  
-  else:
-    print(bash_line_code)
+    global asm_code, bash_line_code, asm_file_or_path
+
+    with open(asm_file_or_path, "r", encoding="utf-8") as file:
+        asm_code = file.read()
     
-    success_label = ctk.CTkLabel(root, text="The code transpiled to bash was printed in the terminal console.")
-    success_label.pack(pady=(20, 5))
+    for line in asm_code:
+        bash_line_code += compile()
+    
+    if not bash_line_code == "err":
+        error_label = ctk.CTkLabel(root, text="Syntax error: ")
+        error_label.pack(pady=(20, 5))
+    
+    else:
+        print(bash_line_code)
+        
+        success_label = ctk.CTkLabel(root, text="The code transpiled to bash was printed in the terminal console.")
+        success_label.pack(pady=(20, 5))
     
 btn = ctk.CTkButton(root, text="transpile", command=enter)
 btn.pack(pady=20)
