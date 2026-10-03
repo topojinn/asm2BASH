@@ -2,6 +2,7 @@ from keyboard import add_hotkey as key
 from os import _exit as exitcode
 import customtkinter as ctk 
 from main import compile
+import webbrowser as w
 import sys as s
 
 root = ctk.CTk()
@@ -18,6 +19,9 @@ entry = ctk.CTkEntry(
 entry.pack()
 
 asm_file_or_path = entry.get()
+
+def new_issue():
+    w.open("https://github.com/topojinn/asm2BASH/issues/new/choose")
 
 def exit():
   try:
@@ -39,11 +43,11 @@ def enter():
     if bash_line_code == "err":
         error_label = ctk.CTkLabel(root, text="Syntax error / ASM command not recognized.")
         error_info_label = ctk.CTkLabel(root, text="Please report this error in the repository on github by opening an issue.")
-        error_link_label = ctk.CTkLabel(root, text="[placeholder test - link]")
+        # error_link_label = ctk.CTkLabel(root, text="to open an issue, go to: https://github.com/topojinn/asm2BASH/issues/new/choose")
         
         error_label.pack(pady=(20, 5))
         error_info_label.pack(pady=(20, 5))
-        error_link_label.pack(pady=(20, 5))
+        # error_link_label.pack(pady=(20, 5))
     
     else:
         print(bash_line_code)
@@ -52,6 +56,9 @@ def enter():
         success_label.pack(pady=(20, 5))
     
 btn = ctk.CTkButton(root, text="transpile", command=enter)
+btn.pack(pady=20)
+
+issue_btn = ctk.CTkButton(root, text="report a bug", command=new_issue)
 btn.pack(pady=20)
 
 root.mainloop()
