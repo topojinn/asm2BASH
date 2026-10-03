@@ -34,11 +34,16 @@ def enter():
         asm_code = file.read()
     
     for line in asm_code:
-        bash_line_code += compile()
+        bash_line_code += compile(line)
     
-    if not bash_line_code == "err":
-        error_label = ctk.CTkLabel(root, text="Syntax error: ")
+    if bash_line_code == "err":
+        error_label = ctk.CTkLabel(root, text="Syntax error / ASM command not recognized.")
+        error_info_label = ctk.CTkLabel(root, text="Please report this error in the repository on github by opening an issue.")
+        error_link_label = ctk.CTkLabel(root, text="[placeholder test - link]")
+        
         error_label.pack(pady=(20, 5))
+        error_info_label.pack(pady=(20, 5))
+        error_link_label.pack(pady=(20, 5))
     
     else:
         print(bash_line_code)
